@@ -33,12 +33,12 @@ headerTemplate.innerHTML = `
 	}
 </style>
 <header>
-		<a href="http://127.0.0.1:5500" class="title">Andrew Peng</a>
+		<a href="/index.html" class="title">Andrew Peng</a>
 
 		<div class="header-subheaders">
 			<a href="http://127.0.0.1:5500" class="header-subheading">Writings</a>
-			<a href="http://127.0.0.1:5500/projects.html" class="header-subheading">Projects</a>
-			<a href="http://127.0.0.1:5500/about.html" class="header-subheading">About</a>
+			<a href="/projects.html" class="header-subheading">Projects</a>
+			<a href="/about.html" class="header-subheading">About</a>
 		</div>
 	</header>
 `;

@@ -1,14 +1,14 @@
 [
   {
-    "title": "blog title 3",
-    "href": "/writings/3-blog.html",
+    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
+    "href": "/writings/3-transformer-1.html",
     "card-desc": "this is a card description",
 		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
     "card-img-alt": "blah"
   },
   {
-    "title": "2 College Tuition Prediction [2/2]- Data Preparation",
+    "title": "College Tuition Prediction [2/2]- Model",
     "href": "/writings/2-college-tuition-prediction-2.html",
     "card-desc": "2 Welcome to part 1 to a series of posts regarding my college tuition project, where I first prepare and visualize the data.",
 		"date": "18 Aug 2019",
