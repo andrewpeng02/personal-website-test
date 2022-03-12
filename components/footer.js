@@ -5,7 +5,7 @@ footerTemplate.innerHTML = `
 		margin-top: 6rem;
 		margin-bottom: 1.5rem;
 		
-		position: fixed;
+		position: absolute;
 		bottom: 0;
 		width: 100%;
 	}

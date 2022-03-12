@@ -21,9 +21,6 @@ function createCard(blogPostMetadata) {
   img.setAttribute("src", blogPostMetadata["card-img-src"]);
   img.setAttribute("alt", blogPostMetadata["card-img-alt"]);
 
-  const cardDiv = document.createElement("div");
-  a.setAttribute("class", "card");
-
   const cardTextDiv = document.createElement("div");
 
   const h1 = document.createElement("h1");
@@ -40,9 +37,8 @@ function createCard(blogPostMetadata) {
   cardTextDiv.appendChild(pDesc);
   cardTextDiv.appendChild(pDate);
 
-  cardDiv.appendChild(cardTextDiv);
   a.appendChild(img);
-  a.appendChild(cardDiv);
+  a.appendChild(cardTextDiv);
   mainElement.appendChild(a);
 }
 
