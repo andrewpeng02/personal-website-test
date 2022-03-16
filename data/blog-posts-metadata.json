@@ -8,19 +8,59 @@
     "card-img-alt": "blah"
   },
   {
-    "title": "College Tuition Prediction [2/2]- Model",
-    "href": "/writings/2-college-tuition-prediction-2.html",
-    "card-desc": "2 Welcome to part 1 to a series of posts regarding my college tuition project, where I first prepare and visualize the data.",
-		"date": "18 Aug 2019",
+    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
+    "href": "/writings/3-transformer-1.html",
+    "card-desc": "this is a card description",
+		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
     "card-img-alt": "blah"
   },
   {
-    "title": "College Tuition Prediction [1/2]- Data Preparation",
-    "href": "/writings/1-college-tuition-prediction-1.html",
-    "card-desc": "Welcome to part 1 to a series of posts regarding my college tuition project, where I first prepare and visualize the data.",
-		"date": "18 Aug 2019",
+    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
+    "href": "/writings/3-transformer-1.html",
+    "card-desc": "this is a card description",
+		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
     "card-img-alt": "blah"
+  },
+  {
+    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
+    "href": "/writings/3-transformer-1.html",
+    "card-desc": "this is a card description",
+		"date": "18 Aug 2020",
+    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
+    "card-img-alt": "blah"
+  },
+  {
+    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
+    "href": "/writings/3-transformer-1.html",
+    "card-desc": "this is a card description",
+		"date": "18 Aug 2020",
+    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
+    "card-img-alt": "blah"
+  },
+  {
+    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
+    "href": "/writings/3-transformer-1.html",
+    "card-desc": "In part 1 of my series on transformers, I'm going to go over implementing a neural machine translation model using Pytorch's new nn.Transformer module",
+		"date": "18 Aug 2020",
+    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
+    "card-img-alt": "blah"
+  },
+  {
+    "title": "College Tuition Prediction [2/2]- Model",
+    "href": "/writings/2-college-tuition-prediction-2.html",
+    "card-desc": "In part 2, we're building the model to predict college tuition",
+		"date": "19 Aug 2019",
+    "card-img-src": "images/2-college-tuition-prediction-2/college.jpg",
+    "card-img-alt": "A University of Oxford building"
+  },
+  {
+    "title": "College Tuition Prediction [1/2]- Data Preparation",
+    "href": "/writings/1-college-tuition-prediction-1.html",
+    "card-desc": "Part 1 of a series of posts regarding my college tuition project, I first prepare and visualize the data",
+		"date": "18 Aug 2019",
+    "card-img-src": "images/1-college-tuition-prediction-1/college.jpg",
+    "card-img-alt": "An image of a fancy building"
   }
 ]

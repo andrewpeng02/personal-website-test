@@ -8,9 +8,14 @@
 
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="writings-style.css" />
+    <link rel="stylesheet" href="../prism/prism.css" />
 
     <script src="../components/header.js" type="text/javascript" defer></script>
-    <script src="../components/nav-footer.js" type="text/javascript" defer></script>
+    <script
+      src="../components/nav-footer.js"
+      type="text/javascript"
+      defer
+    ></script>
     <script src="../components/footer.js" type="text/javascript" defer></script>
     <script src="writings.js" type="text/javascript" defer></script>
   </head>
@@ -21,69 +26,208 @@
       <main>
         <h1 class="title"></h1>
         <p class="date"></p>
-        <p class="blog-content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro ipsam
-          cum corrupti eos error, libero consequuntur in quis vitae possimus
-          numquam, esse harum vel dolores explicabo facere rem repudiandae
-          labore sunt mollitia aliquid tempore facilis incidunt cumque! Cumque
-          ratione molestiae modi temporibus quasi perspiciatis repellat
-          reiciendis distinctio nesciunt cum. Corrupti fuga obcaecati totam
-          fugiat, officiis esse, at ab deserunt quia quaerat accusamus
-          voluptatum aperiam nam hic perferendis asperiores reiciendis nostrum
-          in neque suscipit. Quia natus neque labore, tempore autem porro
-          beatae, cumque veniam cum, eaque voluptate ex placeat minima illo
-          eveniet quam commodi ad illum iure vitae iste libero tenetur
-          voluptatibus. Est adipisci cupiditate accusantium quasi vitae
-          praesentium nisi voluptatem veritatis ipsam ullam velit incidunt,
-          ducimus alias sit quae ad nemo facere dolore impedit tenetur error.
-          Aliquid incidunt necessitatibus, non omnis asperiores cupiditate nisi,
-          quae rem officia autem quidem? Quis, ipsam modi totam recusandae
-          maxime corporis laudantium non aliquid debitis magnam quo accusantium
-          consectetur explicabo eius? Deleniti, labore veritatis quibusdam autem
-          iste voluptates obcaecati voluptate consequuntur sequi et quo! Fugiat
-          tempora facere excepturi! Voluptatum ipsum porro dolorem aliquam,
-          nesciunt doloremque maxime praesentium doloribus fugiat sed aliquid
-          quas, quam rem odit est nostrum ipsam corrupti provident eveniet
-          officiis rerum obcaecati necessitatibus maiores? Officiis tempore
-          ratione, repellat nobis sunt nihil iusto quidem officia similique
-          voluptas a ducimus fugiat placeat, neque nostrum sit natus totam
-          voluptate dignissimos et harum animi autem molestias? At consectetur
-          doloremque aliquam nam, esse commodi veniam dicta, distinctio amet,
-          est nisi praesentium hic ratione sunt? Numquam inventore tempora
-          repudiandae, perferendis voluptatem omnis similique fuga. Id sint
-          voluptas quasi atque laborum repudiandae, veritatis ipsa dolore error
-          tenetur provident quis recusandae! Harum quam tempore maxime odio,
-          molestiae placeat, ducimus laborum eligendi voluptates quod magni
-          rerum perferendis quia. Cum nobis fugit distinctio officia dolore
-          enim, eaque consectetur, nulla, inventore quisquam ullam officiis. Rem
-          explicabo repellat maxime provident alias aliquid quo dicta quibusdam
-          eveniet est, quod ratione id debitis omnis magni? Quis veritatis rerum
-          repudiandae veniam. Quibusdam corporis beatae totam ad fuga inventore
-          nostrum molestias dicta deleniti aperiam laborum nam ex, dignissimos
-          eos at earum harum. Facere nihil nobis earum inventore cum quibusdam
-          quas dolor ipsam officia magni voluptatem alias similique corporis
-          quisquam ipsum deserunt quam a iusto quia, cumque in! Quaerat maxime
-          itaque tenetur inventore consequatur facilis amet optio accusamus nam
-          quis nihil labore ipsum nisi adipisci laboriosam, nesciunt ducimus
-          magnam eveniet veniam provident sit saepe. Enim recusandae ad ab,
-          harum quam est error beatae eveniet dolores similique animi minima
-          voluptate velit obcaecati quod magni maxime laborum omnis voluptatem
-          voluptates. Explicabo unde nobis in voluptatem dolorem dolorum at. Sit
-          est veniam deserunt inventore magnam accusantium? Minima, placeat,
-          harum tempora at magnam ullam voluptatem hic atque recusandae sapiente
-          fugit unde culpa natus magni tenetur commodi dolorum. Sapiente, nihil,
-          unde harum error corrupti cum quidem blanditiis officia laboriosam
-          molestiae consectetur id facilis dolore obcaecati, quisquam reiciendis
-          aperiam aspernatur asperiores perferendis! Cupiditate amet perferendis
-          repellendus quos eos, harum aliquam impedit voluptates? Debitis in
-          odit quidem vitae sit dolor, animi dicta architecto minima blanditiis
-          sunt! Voluptatibus.
-        </p>
+        <div class="blog-content">
+          <p>
+            Welcome to part 1 to a series of posts regarding my college tuition
+            project!
+          </p>
+          <figure>
+            <img
+              src="/images/1-college-tuition-prediction-1/college.jpg"
+              alt="An image of a fancy building"
+              style="width: 100%"
+            />
+            <figcaption>
+              <a
+                href="https://unsplash.com/photos/1iuxWsIZ6ko?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
+                >An image of a fancy building</a
+              >
+            </figcaption>
+          </figure>
+          <p>
+            In this project, I predict the tuition of colleges around the US
+            using data from the
+            <a href="https://nces.ed.gov/ipeds/use-the-data"
+              >National Center for Education Statistics</a
+            >. I chose features I thought would best predict college tuition,
+            such as admission rate, graduation rate, and college location, and I
+            ended up with roughly 20 features.
+          </p>
+          <h3>Data Visualization</h3>
+          <p>
+            Always the first process you should do with your data is to
+            visualize it. Here, I created various plots of tuition vs. various
+            factors I thought would be the best predictors using Seaborn.
+          </p>
+          <figure>
+            <img
+              src="/images/1-college-tuition-prediction-1/tuition_hist.png"
+              alt="Histogram of Tuition"
+              style="width: 60%"
+            />
+            <figcaption>
+              <p>Histogram of Tuition</p>
+            </figcaption>
+          </figure>
+          <p>
+            From this graph, I can tell that tuition is right skewed with peak
+            of around 8000$.
+          </p>
+          <figure>
+            <img
+              src="/images/1-college-tuition-prediction-1/tuition_admissions.png"
+              alt="Scatterplot of Tuition and Admissions Rate"
+              style="width: 60%"
+            />
+            <figcaption>
+              <p>Scatterplot of Tuition and Admissions Rate</p>
+            </figcaption>
+          </figure>
+          <p>
+            While admissions rate seems much more varied from 0-20000$, the rate
+            appears to generally decrease.
+          </p>
+          <figure>
+            <img
+              src="/images/1-college-tuition-prediction-1/tuition_grad_rate.png"
+              alt="Scatterplot of Tuition and Graduation Rate              "
+              style="width: 60%"
+            />
+            <figcaption>
+              <p>Scatterplot of Tuition and Graduation Rate</p>
+            </figcaption>
+          </figure>
+          <p>
+            Again, a similar trend where graduation rate varies a lot from
+            0-20000$ but exhibits an increase afterwards.
+          </p>
+          <figure>
+            <img
+              src="/images/1-college-tuition-prediction-1/tuition_salary.png"
+              alt="Scatterplot of Tuition and Professor Salary"
+              style="width: 60%"
+            />
+            <figcaption>
+              <p>Scatterplot of Tuition and Professor Salary</p>
+            </figcaption>
+          </figure>
+          <p>
+            As expected, as tuition increases, professors' salaries also
+            increases. From these graphs, I predict that my models will be able
+            to predict college tuition more accurately around 30,000$ because of
+            its lower variability in factors like graduation rate.
+          </p>
+          <h3>Data Preparation</h3>
+          <p>
+            The data.csv file contains the colleges as rows and features
+            (including tuition) as columns. I will be using Pandas for loading
+            data and scikit-learn for preprocessing.
+          </p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">import pandas as pd
+import joblib
+
+import sklearn.preprocessing as preprocessing
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer</code></pre>
+          <p>
+            I removed the colleges that didn't have tuition filled in, as well
+            as the rows which have less than 18 out of the 25 features so that
+            there are enough features to predict tuition. This left about 2900
+            colleges from the original total of 7000.
+          </p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">data = pd.read_csv('data/data.csv')
+data = data[pd.notnull(data['Tuition and fees'])]
+
+min_fields = 18
+for index, row in data.iterrows():
+    filled = 0
+
+    for name, field in row.items():
+        if str(field) != 'nan':
+            filled += 1
+
+    if filled <= min_fields:
+        data.drop(index, inplace=True)
+        data.drop(data.columns[[0, 1, 2]], axis=1, inplace=True)</code></pre>
+
+          <p>
+            Split data into train and test sets using train_test_split() with
+            80% of the data going into the train set.
+          </p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">data = data.reset_index(drop=True)
+train, test = train_test_split(data, test_size=0.2)
+X_train, y_train = train.drop(train.columns[[2]], axis=1), train.iloc[:,2]
+X_test, y_test = test.drop(test.columns[[2]], axis=1), test.iloc[:, 2]</code></pre>
+          <p>
+            Scale targets between 0 and 1 for faster convergence. While the
+            sklearn libary contains a plethora of scalers, I chose min max
+            scaler because of its simplicity and skewed dataset. I saved the
+            scaler using joblib so I could later scale the predicted targets
+            back.
+          </p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">scaler = preprocessing.MinMaxScaler()
+scaler.fit(y_train.values.reshape(-1, 1))
+y_train, y_test = scaler.transform(y_train.values.reshape(-1, 1)), scaler.transform(y_test.values.reshape(-1, 1))
+joblib.dump(scaler, 'min_max_scaler.pkl')</code></pre>
+          <p>
+            To encode the numeric features, I defined the columns which had
+            numeric features and a Pipeline from sklearn. I first imputed the
+            data (meaning I replaced missing values with the mean) and then
+            scaled the data. For the categorical features, I instead used a
+            OneHotEncoder in a Pipeline to convert the categories to numeric
+            values.
+          </p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">numeric_features = X_train.columns[[0, 1] + [i for i in range(4, 24)]]
+numeric_trans = Pipeline(steps=[('imputer', SimpleImputer(strategy='mean')),
+('scaler', preprocessing.MinMaxScaler())])
+
+column_features = X_train.columns[[2, 3]]
+column_trans = Pipeline(steps=[('encoder', preprocessing.OneHotEncoder(drop='first'))])</code></pre>
+          <p>
+            I then created a ColumnTransformer by passing the pipelines and
+            feature names and then transformed the data.
+          </p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">transformer = ColumnTransformer(transformers=[('numeric', numeric_trans, numeric_features),
+('categorical', column_trans, column_features)],
+remainder='passthrough')
+transformer.fit(X_train)
+
+X_train = pd.DataFrame(transformer.transform(X_train))
+X_test = pd.DataFrame(transformer.transform(X_test))</code></pre>
+          <p>
+            Now that the data is ready, it's finally time for creating the model
+            in
+            <a href="/writings/2-college-tuition-prediction-2.html">Part 2!</a>
+          </p>
+          <p>
+            Full code is located over on my
+            <a
+              href="https://github.com/andrewpeng02/college-tuition/tree/master"
+              >GitHub</a
+            >.
+          </p>
+        </div>
       </main>
 
       <nav-footer-component></nav-footer-component>
 
       <footer-component></footer-component>
     </div>
+
+    <script src="../prism/prism.js"></script>
   </body>
 </html>

@@ -45,12 +45,12 @@ h3 {
 }
 
 p {
-  font-size: 2rem;
-  color: rgb(30, 30, 30);
+  font-size: 1.9rem;
+  color: rgba(0, 0, 0, 0.8);
   line-height: 3rem;
 
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 hr {

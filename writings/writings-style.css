@@ -9,3 +9,21 @@ p.date {
 	font-size: 1.2rem;
 }
 
+figure {
+	text-align: center;
+	
+	margin: 0;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+}
+
+figcaption {
+	text-align: center;
+}
+
+figcaption a, figcaption p {
+	margin-top: -1rem;
+
+	color: rgb(100, 100, 100);
+	font-size: 1.4rem;
+}
