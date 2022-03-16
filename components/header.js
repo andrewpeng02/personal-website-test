@@ -33,14 +33,14 @@ headerTemplate.innerHTML = `
 	}
 </style>
 <header>
-		<a href="/" class="title">Andrew Peng</a>
+	<a href="/" class="title">Andrew Peng</a>
 
-		<div class="header-subheaders">
-			<a href="/" class="header-subheading">Writings</a>
-			<a href="/projects.html" class="header-subheading">Projects</a>
-			<a href="/about.html" class="header-subheading">About</a>
-		</div>
-	</header>
+	<div class="header-subheaders">
+		<a href="/" class="header-subheading">Writings</a>
+		<a href="/projects.html" class="header-subheading">Projects</a>
+		<a href="/about.html" class="header-subheading">About</a>
+	</div>
+</header>
 `;
 
 class HeaderComponent extends HTMLElement {

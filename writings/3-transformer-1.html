@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../prism/prism.css" />
 
     <script src="../components/header.js" type="text/javascript" defer></script>
+    <script src="../components/nav-footer.js" type="text/javascript" defer></script>
     <script src="../components/footer.js" type="text/javascript" defer></script>
     <script src="writings.js" type="text/javascript" defer></script>
   </head>
@@ -36,36 +37,7 @@ if (b && c):
         </p>
       </main>
 
-      <div class="footer-nav">
-        <a class="nav-a left" href="#" hidden>
-          <div class="nav-previous">
-            <div class="combine">
-              <img
-                src="../assets/mui_arrow_backwards.svg"
-                alt="Backwards arrow"
-              />
-              <h3 class="nav-h3">Previous</h3>
-            </div>
-            <p class="nav-p left">Title of prev blog</p>
-          </div>
-        </a>
-        <a class="nav-a right" href="#" hidden>
-          <div class="nav-next">
-            <div class="combine">
-              <h3 class="nav-h3">Next</h3>
-              <img
-                src="../assets/mui_arrow_forwards.svg"
-                alt="Forwards arrow"
-              />
-            </div>
-            <p class="nav-p right">
-              Title of next blog College Tuition Prediction [1/2]- Data
-              Preparation
-            </p>
-          </div>
-        </a>
-      </div>
-
+      <nav-footer-component></nav-footer-component>
       <footer-component></footer-component>
     </div>
 

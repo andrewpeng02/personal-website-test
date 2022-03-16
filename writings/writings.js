@@ -29,10 +29,10 @@ readTextFile("../data/blog-posts-metadata.json", function (text) {
   // There's a next blog post
   let hasNextPost = false;
   if (i > 0) {
-    document.querySelector(".nav-p.right").textContent =
+    document.querySelector("nav-footer-component").shadowRoot.querySelector(".nav-p.right").textContent =
       blogPostsMetadata[i - 1]["title"];
 
-    const a = document.querySelector(".nav-a.right");
+    const a = document.querySelector("nav-footer-component").shadowRoot.querySelector(".nav-a.right");
     a.href = blogPostsMetadata[i - 1]["href"];
     a.removeAttribute("hidden");
     hasNextPost = true;
@@ -41,18 +41,18 @@ readTextFile("../data/blog-posts-metadata.json", function (text) {
   // There's a previous blog post
   let hasPrevPost = false;
   if (i + 1 < blogPostsMetadata.length) {
-    document.querySelector(".nav-p.left").textContent =
+    document.querySelector("nav-footer-component").shadowRoot.querySelector(".nav-p.left").textContent =
       blogPostsMetadata[i + 1]["title"];
 
-    const a = document.querySelector(".nav-a.left");
+    const a = document.querySelector("nav-footer-component").shadowRoot.querySelector(".nav-a.left");
     a.href = blogPostsMetadata[i + 1]["href"];
     a.removeAttribute("hidden");
     hasPrevPost = true;
   }
 
   if (hasNextPost && !hasPrevPost) {
-    document.querySelector(".footer-nav").style.justifyContent = "flex-end";
+    document.querySelector("nav-footer-component").shadowRoot.querySelector(".footer-nav").style.justifyContent = "flex-end";
   } else if (!hasNextPost && hasPrevPost) {
-    document.querySelector(".footer-nav").style.justifyContent = "flex-start";
+    document.querySelector("nav-footer-component").shadowRoot.querySelector(".footer-nav").style.justifyContent = "flex-start";
   }
 });
