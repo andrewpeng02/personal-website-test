@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog title</title>
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="writings-style.css" />
+    <link rel="stylesheet" href="../prism/prism.css" />
+
+    <script src="../components/header.js" type="text/javascript" defer></script>
+    <script
+      src="../components/nav-footer.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script src="../components/footer.js" type="text/javascript" defer></script>
+    <script src="writings.js" type="text/javascript" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header-component></header-component>
+
+      <main>
+        <h1 class="title"></h1>
+        <p class="date"></p>
+        <!-- Blog content goes below -->
+        <div class="blog-content">
+          <figure>
+            <img
+              src="/images/5-gpu-monitor-plugin/gpu-monitor-graphs-2.png"
+              alt="Image of my GPU monitor plugin"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Image of my GPU monitor plugin</p>
+            </figcaption>
+          </figure>
+          <h2>Features</h2>
+          <p>
+            I made an IntelliJ plugin that monitors GPU vitals that's compatible
+            with PyCharm (my IDE of preference), IntelliJ IDEA, and others. It
+            monitors GPU temperature, GPU usage, and memory usage and plots the
+            graphs using
+            <a href="http://www.jfree.org/jfreechart/">JFreeChart</a>. It's
+            useful for keeping track of memory utilization, etc while training
+            my machine learning models.
+          </p>
+          <figure>
+            <img
+              src="/images/5-gpu-monitor-plugin/gpu-monitor-config.png"
+              alt="GPU monitor plugin settings"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>GPU monitor plugin settings</p>
+            </figcaption>
+          </figure>
+          <hr />
+          <h2>Compatibility</h2>
+          <p>
+            It currently only supports single nvidia gpu setups, but I can add
+            more support if needed.
+          </p>
+          <hr />
+          <p>
+            The plugin is located <a href="https://plugins.jetbrains.com/plugin/13597-gpu-monitor">here</a>, and the source code is located <a href="https://github.com/andrewpeng02/gpu-monitor-plugin">here</a>.
+            Please add feature requests and/or bugs in the GitHub repository!
+          </p>
+        </div>
+      </main>
+
+      <nav-footer-component></nav-footer-component>
+      <footer-component></footer-component>
+    </div>
+
+    <script src="../prism/prism.js"></script>
+  </body>
+</html>

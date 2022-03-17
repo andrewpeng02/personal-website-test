@@ -24,12 +24,12 @@
     "card-img-alt": "blah"
   },
   {
-    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-.html",
-    "card-desc": "this is a card description",
-		"date": "18 Aug 2020",
-    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
-    "card-img-alt": "blah"
+    "title": "GPU Monitor IntelliJ Plugin",
+    "href": "/writings/5-gpu-monitor-plugin.html",
+    "card-desc": "I made an IntelliJ plugin that monitors GPU vitals that's compatible with PyCharm (my IDE of preference), IntelliJ IDEA, and others.",
+		"date": "04 Jan 2020",
+    "card-img-src": "images/5-gpu-monitor-plugin/pluginIcon.svg",
+    "card-img-alt": "Logo of my GPU monitor plugin"
   },
   {
     "title": "Transformer [2/2]- PytorchTransformers Library",
@@ -37,7 +37,7 @@
     "card-desc": "In part 2 of my series, I'm going to go over huggingface's Pytorch Transformers library.",
 		"date": "25 Nov 2019",
     "card-img-src": "images/4-transformer-2/logo.png",
-    "card-img-alt": "blah"
+    "card-img-alt": "Huggingface logo"
   },
   {
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
