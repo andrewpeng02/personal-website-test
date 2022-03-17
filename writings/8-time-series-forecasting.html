@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog title</title>
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="writings-style.css" />
+    <link rel="stylesheet" href="../prism/prism.css" />
+
+    <script src="../components/header.js" type="text/javascript" defer></script>
+    <script
+      src="../components/nav-footer.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script src="../components/footer.js" type="text/javascript" defer></script>
+    <script src="writings.js" type="text/javascript" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header-component></header-component>
+
+      <main>
+        <h1 class="title"></h1>
+        <p class="date"></p>
+        <!-- Blog content goes below -->
+        <div class="blog-content">
+          <p>
+            Time series forecasting is a classical problem in which you predict
+            the values in the next timesteps, given historical data.
+          </p>
+          <p>
+            The
+            <a href="https://www.kaggle.com/c/m5-forecasting-accuracy"
+              >M5 Forecasting competition on Kaggle</a
+            >
+            is an excellent dataset for time series forecasting. The ultimate
+            goal of the competition is to predict the sales of a variety of
+            products. There are several different files of data included:
+          </p>
+          <ol>
+            <li>
+              sales_train_validation.csv. Contains a list of items along with
+              their respective category, store location, and sales for over 3
+              years
+            </li>
+            <li>
+              sell_prices.csv. Contains a list of prices along with the
+              corresponding item and date by week.
+            </li>
+            <li>
+              calendar.csv. Used to convert calendar dates to the dates the
+              competition uses. Also includes major holidays and "snap" events
+              (food stamps).
+            </li>
+          </ol>
+          <hr />
+          <h2>Data Exploration</h2>
+          <p>
+            I have generated various plots in plot.ly to explore the data
+            included.
+          </p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/32.embed"></iframe>
+          <p>
+            This plots the total number of sales on a given day. The number of
+            sales increased over time, with a greater number of sales in the
+            summer season.
+          </p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/22.embed"></iframe>          
+          <p>
+            Most of the sales come from California, while the number of sales
+            from Texas and Wisconsin were roughly the same.
+          </p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/24.embed"></iframe>
+          <p>
+            Most of the sales were food items, which are much more dependent on
+            season than hobbies or household items.
+          </p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/9.embed"></iframe>
+          <p>This is a histogram of how much the prices of items varied.</p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/11.embed"></iframe>
+          <p>
+            This graphs the yearly percent increase in item prices, along with
+            USD inflation. The item percent increase generally followed the USD
+            inflation, as it should because prices of items are tied to
+            inflation of the US dollar.
+          </p>
+          <hr />
+          <h2>The Model</h2>
+          <p>
+            To predict the sales figures, I used an LSTM network in Pytorch.
+          </p>
+          <figure>
+            <pre
+              class="line-numbers"
+            ><code class="language-python">class M5LSTM(nn.Module):
+    def __init__(self, input_dim, hidden_dim, num_layers):
+        super().__init__()
+        self.hidden_dim = hidden_dim
+        self.num_layers = num_layers
+
+        self.lstm = nn.LSTM(input_dim, hidden_dim, num_layers=num_layers, batch_first=True)
+        self.fc = nn.Linear(hidden_dim, 1)
+
+    # seqs shape [batch_size, timesteps, features]
+    # out shape [batch_size * timesteps, 1]
+    def forward(self, seqs, hidden): 
+        out, hidden = self.lstm(seqs, hidden)
+        out = out.reshape(-1, self.hidden_dim)
+        out = self.fc(out)
+  
+        return out, hidden
+
+    def init_hidden(self, batch_size):
+        weight = next(self.parameters()).data
+
+        hidden = (weight.new(self.num_layers, batch_size, self.hidden_dim).zero_(),
+                  weight.new(self.num_layers, batch_size, self.hidden_dim).zero_())
+
+                  return hidden</code></pre>
+            <figcaption>
+              <p>An LSTM model</p>
+            </figcaption>
+          </figure>
+          <p>
+            I passed in the amount of sales and other features like day of week,
+            and the model predicts the amount of sales for each day in the
+            future.
+          </p>
+          <p>Training the network gave me these results:</p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/42.embed"></iframe>
+          <p>
+            Loss decreased to about 1.80 over 20 epochs. This is an example
+            output of the model:
+          </p>
+          <iframe width="800" height="400" frameborder="0" scrolling="no" src="//plotly.com/~andrewpeng02/40.embed"></iframe>
+          <p>
+            Although peaks of sales are not well represented, the model
+            generally followed the true sales amounts. The code is available on
+            <a href="https://github.com/andrewpeng02/m5-forecasting">Github</a>.
+          </p>
+          <hr />
+          <p>
+            UPDATE: The competition has finished, and you can view a synopsis of
+            the first place solution <a href="https://www.kaggle.com/c/m5-forecasting-accuracy/discussion/163684">here</a>. They used the LightGBM gradient
+            boosting framework along with a clever loss metric and feature
+            selection.
+          </p>
+        </div>
+      </main>
+
+      <nav-footer-component></nav-footer-component>
+      <footer-component></footer-component>
+    </div>
+
+    <script src="../prism/prism.js"></script>
+  </body>
+</html>

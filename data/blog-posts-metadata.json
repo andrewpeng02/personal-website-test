@@ -1,17 +1,17 @@
 [
   {
-    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-.html",
-    "card-desc": "this is a card description",
-		"date": "18 Aug 2020",
-    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
-    "card-img-alt": "blah"
+    "title": "Time Series Forecasting in Pytorch",
+    "href": "/writings/8-time-series-forecasting.html",
+    "card-desc": "Time series forecasting is a classical problem in which you predict the values in the next timesteps, given historical data. In this blog, I tackle the M5 Forecasting compeition on Kaggle",
+    "date": "02 Nov 2020",
+    "card-img-src": "images/8-time-series-forecasting/card-img.png",
+    "card-img-alt": "A graph of a time series problem"
   },
   {
     "title": "Visualizing Vector Fields and Flow Lines using Matplotlib",
     "href": "/writings/7-visualizing-vector-fields.html",
     "card-desc": "Using matplotlib, a python plotting library, this is how you graph both 2d and 3d vector fields along with their associated flow lines",
-		"date": "31 Mar 2020",
+    "date": "31 Mar 2020",
     "card-img-src": "images/7-visualizing-vector-fields/3-3.png",
     "card-img-alt": "A graph of a vector field and flow line in 3d"
   },
@@ -19,7 +19,7 @@
     "title": "Deep Reinforcement Learning- Deep Q Learning",
     "href": "/writings/6-deep-reinforcement-learning-dqn.html",
     "card-desc": "In this post, I cover an introduction into deep reinforcement learning, a branch of machine learning dealing with agents and how they make decisions in an environment, specifically Deep Q Learning in Pytorch",
-		"date": "01 Mar 2020",
+    "date": "01 Mar 2020",
     "card-img-src": "images/6-deep-reinforcement-learning-dqn/card-img.png",
     "card-img-alt": "Image of the lunar rover OpenAI Gym"
   },
@@ -27,7 +27,7 @@
     "title": "GPU Monitor IntelliJ Plugin",
     "href": "/writings/5-gpu-monitor-plugin.html",
     "card-desc": "I made an IntelliJ plugin that monitors GPU vitals that's compatible with PyCharm (my IDE of preference), IntelliJ IDEA, and others.",
-		"date": "04 Jan 2020",
+    "date": "04 Jan 2020",
     "card-img-src": "images/5-gpu-monitor-plugin/pluginIcon.svg",
     "card-img-alt": "Logo of my GPU monitor plugin"
   },
@@ -35,7 +35,7 @@
     "title": "Transformer [2/2]- PytorchTransformers Library",
     "href": "/writings/4-transformer-2.html",
     "card-desc": "In part 2 of my series, I'm going to go over huggingface's Pytorch Transformers library.",
-		"date": "25 Nov 2019",
+    "date": "25 Nov 2019",
     "card-img-src": "images/4-transformer-2/logo.png",
     "card-img-alt": "Huggingface logo"
   },
@@ -43,7 +43,7 @@
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
     "href": "/writings/3-transformer-1.html",
     "card-desc": "In part 1 of my series on transformers, I'm going to go over implementing a neural machine translation model using Pytorch's new nn.Transformer module",
-		"date": "10 Nov 2019",
+    "date": "10 Nov 2019",
     "card-img-src": "images/3-transformer-1/encoder-3.png",
     "card-img-alt": "A diagram of the Transformer encoder"
   },
@@ -51,7 +51,7 @@
     "title": "College Tuition Prediction [2/2]- Model",
     "href": "/writings/2-college-tuition-prediction-2.html",
     "card-desc": "In part 2, we're building the model to predict college tuition",
-		"date": "19 Aug 2019",
+    "date": "19 Aug 2019",
     "card-img-src": "images/2-college-tuition-prediction-2/college.jpg",
     "card-img-alt": "A University of Oxford building"
   },
@@ -59,7 +59,7 @@
     "title": "College Tuition Prediction [1/2]- Data Preparation",
     "href": "/writings/1-college-tuition-prediction-1.html",
     "card-desc": "Part 1 of a series of posts regarding my college tuition project, I first prepare and visualize the data",
-		"date": "18 Aug 2019",
+    "date": "18 Aug 2019",
     "card-img-src": "images/1-college-tuition-prediction-1/college.jpg",
     "card-img-alt": "An image of a fancy building"
   }
