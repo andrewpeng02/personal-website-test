@@ -36,7 +36,7 @@
     "href": "/writings/4-transformer-2.html",
     "card-desc": "In part 2 of my series, I'm going to go over huggingface's Pytorch Transformers library.",
 		"date": "25 Nov 2019",
-    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
+    "card-img-src": "images/4-transformer-2/logo.png",
     "card-img-alt": "blah"
   },
   {
