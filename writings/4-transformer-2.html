@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog title</title>
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="writings-style.css" />
+    <link rel="stylesheet" href="../prism/prism.css" />
+
+    <script src="../components/header.js" type="text/javascript" defer></script>
+    <script
+      src="../components/nav-footer.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script src="../components/footer.js" type="text/javascript" defer></script>
+    <script src="writings.js" type="text/javascript" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header-component></header-component>
+
+      <main>
+        <h1 class="title"></h1>
+        <p class="date"></p>
+        <!-- Blog content goes below -->
+        <div class="blog-content">
+          <p>
+            In part 2 of my post, I'm going to go over huggingface's pytorch
+            transformers library located
+            <a href="https://github.com/huggingface/transformers">here</a>.
+          </p>
+          <figure>
+            <img
+              src="/images/4-transformer-2/transformers_logo_name-1.png"
+              alt="Huggingface logo"
+              style="width: 80%"
+            />
+            <figcaption>
+              <p>Huggingface logo</p>
+            </figcaption>
+          </figure>
+          <p>
+            This library provides over 30 pretrained state of the art
+            transformer models on a variety of languages. Alike convolutional
+            neural networks, transformers trained on a different linguistic
+            dataset can be easily retrained on different language datasets.
+            Using pretrained models rather than starting from scratch greatly
+            reduces training time and can sometimes increase accuracy over
+            training a model from scratch.
+          </p>
+          <p>
+            In this tutorial, I'll be fine-tuning a DistilBert model to predict
+            the sentiment of IMDB movie reviews. DistilBert is a smaller version
+            of the BERT model, allowing it to get most of the performance of
+            BERT for much less training. More details are located in
+            huggingface's
+            <a href="https://medium.com/huggingface/distilbert-8cf3380435b5"
+              >blog post</a
+            >.
+          </p>
+          <hr />
+          <h2>Implementation</h2>
+          <h3>Data Preprocessing</h3>
+          <p>
+            I'm using an
+            <a
+              href="https://www.kaggle.com/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews"
+              >IMDB movie reviews dataset</a
+            >, which has a list of movie reviews as well as either a "positive"
+            or "negative" sentiment.
+          </p>
+          <p>
+            To use huggingface's pretrained models, we have to use their
+            provided tokenizer. Because acquiring the sentiment from a review
+            isn't reliant on stop words such as 'and', 'or', or 'at', we remove
+            them.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">from bs4 import BeautifulSoup
+from transformers import DistilBertTokenizer
+
+from nltk.corpus import stopwords
+
+stopwords = stopwords.words('english')
+distilbert_tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+
+review = BeautifulSoup(review, "html.parser").get_text()
+review = review.lower()
+review = distilbert_tokenizer.tokenize(review)
+
+# Remove stopwords/punctuation
+review = [w for w in review if w not in stopwords and contains_alphabet(w)]</code></pre>
+              <p>Preprocess data class</p>
+            </figcaption>
+          </figure>
+          <p>
+            Now in the dataset class, we attach the start token [CLF], insert
+            padding, and convert the tokenized words to indicies.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">seq_length = 256
+tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
+
+review = ['[CLF]'] + review[:seq_length - 1]
+review = review + ['[PAD]' for _ in range(self.seq_length - len(review))]
+review = tokenizer.convert_tokens_to_ids(review)</code></pre>
+              <p>Dataset class</p>
+            </figcaption>
+          </figure>
+          <hr />
+          <h3>Training</h3>
+          <p>
+            Instantiating the DistilBert model is as simple as importing the
+            class.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', num_labels=2).to('cuda')
+lrs = [{'params': model.distilbert.parameters(), 'lr': kwargs['lr_transformer']},
+            {'params': model.pre_classifier.parameters()},
+            {'params': model.classifier.parameters()}]
+optim = Adam(lrs, lr=kwargs['lr_classifier'], eps=kwargs['eps'])</code></pre>
+              <p>
+                Train class. It may take a while to download the pretrained
+                model. Here, I apply different learning rates to the transformer
+                and classifier to achieve better results.
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            To train the model, all we have to do is pass the reviews and labels
+            to the model and we get our losses back!
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">reviews = reviews.to('cuda')
+labels = labels.to('cuda').long()
+
+optim.zero_grad()
+loss = model(reviews, labels=labels)[0]
+
+loss.backward()
+optim.step()</code></pre>
+              <p>
+                Train class. After I get the losses from every minibatch, I
+                backpropagate.
+              </p>
+            </figcaption>
+          </figure>
+          <hr />
+          <h2>Results</h2>
+          <figure>
+            <img
+              src="/images/4-transformer-2/Steps-and-Losses.png"
+              alt="Graph of steps vs loss"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Graph of steps vs loss</p>
+            </figcaption>
+          </figure>
+          <p>
+            After 3 epochs, the pretrained transformer reaches a validation loss
+            of 0.262 and a validation accuracy of 0.9021.
+          </p>
+          <figure>
+            <img
+              src="/images/4-transformer-2/Model-and-Training-time-per-epoch.png"
+              alt="Bar chart of validation accuracy for different models"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Bar chart of validation accuracy for different models</p>
+            </figcaption>
+          </figure>
+          <p>
+            I trained other common linguistic models including an LSTM and a
+            transformer implemented using nn.Transformer. As shown in the graph,
+            the huggingface transformer still edges out in terms of accuracy.
+          </p>
+          <figure>
+            <img
+              src="/images/4-transformer-2/Model-and-Training-time-per-epoch.png"
+              alt="Bar chart of training time per epoch for different models"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Bar chart of training time per epoch for different models</p>
+            </figcaption>
+          </figure>
+          <p>
+            DistilBert took the longest time to train by far with approximately
+            — min, likely because it has the most amount of parameters. This is
+            followed by nn.Transformer and then by the LSTM.
+          </p>
+          <hr />
+          <h3>Further Research</h3>
+          <p>Some further improvements that could be made to this model:</p>
+          <ol>
+            <li>
+              Improving the dataloader by allowing for variable length batches
+              in order to reduce the amount of wasted memory spent on padding
+            </li>
+            <li>
+              Optimizing the parameters further, such as by adding differential
+              learning rates
+            </li>
+          </ol>
+          <p>
+            My code is located
+            <a href="https://github.com/andrewpeng02/imdb-sentiment">here</a>.
+          </p>
+        </div>
+      </main>
+
+      <nav-footer-component></nav-footer-component>
+      <footer-component></footer-component>
+    </div>
+
+    <script src="../prism/prism.js"></script>
+  </body>
+</html>

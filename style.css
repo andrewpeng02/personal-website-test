@@ -55,6 +55,15 @@ p {
   margin-bottom: 3rem;
 }
 
+li {
+  font-size: 1.9rem;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 3rem;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 hr {
   border-top: 0.15rem solid rgb(180, 180, 180);
   margin-top: 5rem;

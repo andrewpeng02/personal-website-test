@@ -4,14 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>College Tuition Prediction [1/2]- Data Preparation</title>
+    <title>Blog title</title>
 
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="writings-style.css" />
     <link rel="stylesheet" href="../prism/prism.css" />
 
     <script src="../components/header.js" type="text/javascript" defer></script>
-    <script src="../components/nav-footer.js" type="text/javascript" defer></script>
+    <script
+      src="../components/nav-footer.js"
+      type="text/javascript"
+      defer
+    ></script>
     <script src="../components/footer.js" type="text/javascript" defer></script>
     <script src="writings.js" type="text/javascript" defer></script>
   </head>
@@ -22,27 +26,372 @@
       <main>
         <h1 class="title"></h1>
         <p class="date"></p>
+        <!-- Blog content goes below -->
         <div class="blog-content">
-          <h2>This is a header</h2>
-          <p>This is some text</p>
-          <pre class="line-numbers"><code class="language-python">int a = 3 
-int b = 4
-if (b && c):
-    print()</code></pre>
-          <p>Followed by some code</p>
-          <hr>
-          <p>and more text</p>
-          <p>and even more text! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti nisi maiores soluta facilis repudiandae voluptas architecto doloribus ratione harum voluptate aliquid molestias, repellat tenetur ab mollitia error perspiciatis reprehenderit dolores, eveniet eos pariatur sed eaque? At perspiciatis quisquam deleniti veniam veritatis a eius in nemo, aperiam praesentium debitis repellendus dolore repudiandae rem id maiores nam, fuga ipsam. Natus commodi eos explicabo. Voluptatum repellendus possimus quasi quae voluptas aliquid in officiis. Similique beatae sunt eaque deleniti neque, eveniet temporibus consequuntur eligendi? Placeat fugit animi quae molestiae harum architecto fugiat, delectus inventore magni libero qui cumque suscipit vitae voluptas nobis reiciendis. Quam.</p>
+          <p>
+            In part 1 of my series on transformers, I'm going to go over
+            implementing a neural machine translation model using Pytorch's new
+            nn.Transformer module.
+          </p>
           <figure>
             <img
-              src="/images/2-college-tuition-prediction-2/results.png"
-              alt="A graph of the results"
+              src="/images/3-transformer-1/encoder-3.png"
+              alt="A diagram of the Transformer encoder"
               style="width: 100%"
             />
             <figcaption>
-              <p>A bar graph comparing the results of the models</p>
+              <p>A diagram of the Transformer encoder</p>
             </figcaption>
           </figure>
+          <p>
+            Transformers, introduced by the paper
+            <a href="https://arxiv.org/abs/1706.03762"
+              >Attention is All You Need</a
+            >, inherently don't have a sense of time, They instead rely on
+            <b>positional encoding</b> to encode the order of elements. This
+            gives the transformer architecture an important advantage over other
+            language models such as recurrent neural networks: they are
+            parallelizable and easy to expand. This has allowed huge models such
+            as the 1.5 billion parameter GPT-2 to achieve state of the art
+            performance on language modelling.
+          </p>
+          <h2>Pytorch</h2>
+          <figure>
+            <img
+              src="/images/3-transformer-1/pytorch-logo.png"
+              alt="Pytorch logo"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Pytorch logo</p>
+            </figcaption>
+          </figure>
+          <p>
+            Now, with the release of Pytorch 1.2, we can build transformers in
+            pytorch! We'll go over the basics of the transformer architecture
+            and how to use nn.Transformer. In a transformer, the input sentence
+            goes through an encoder where the sentence gets passed through
+            encoders to become memory. Then the output sentence and memory
+            passes through decoders where it outputs the translated sentence.
+          </p>
+          <h2>The Encoder</h2>
+          <figure>
+            <img
+              src="/images/3-transformer-1/encoder-1.png"
+              alt="First part of the model"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>First part of the model</p>
+            </figcaption>
+          </figure>
+          <p>
+            First, we tokenize the input data, pad the array if necessary, and
+            convert the tokens to embeddings.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">import spacy
+# Tokenize sentence
+lang_model = spacy.load('en', disable=['tagger', 'parser', 'ner'])
+sentence = sentence.lower()
+sentence = [tok.text for tok in lang_model.tokenizer(sentence) if tok.text not in punctuation]
+
+# Create a dictionary which maps tokens to indices (train contains all the training sentences)
+freq_list = Counter()
+    for sentence in train:
+        freq_list.update(sentence)
+
+# Convert tokens to indices
+indices = [freq_list[word] for word in sentence if word in freq_list]</code></pre>
+              <p>
+                Here, I tokenize the sentence using spacy and convert the
+                sentence to indices
+              </p>
+            </figcaption>
+          </figure>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">import torch
+from einops import rearrange
+
+self.embed_src = nn.Embedding(vocab_size, d_model)
+src = rearrange(indices, 'n s -> s n')
+src = self.embed_src(src)</code></pre>
+              <p>
+                In the LanguageTransformer class, I create an embedding and
+                embed the batch
+              </p>
+            </figcaption>
+          </figure>
+          <hr />
+          <figure>
+            <img
+              src="/images/3-transformer-1/encoder-2.png"
+              alt="Positional encoding"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Positional encoding</p>
+            </figcaption>
+          </figure>
+          <p>
+            Now we add the positional encoding to the sentences in order to give
+            some order to the words. In the Attention is All You Need model,
+            they use sine and cosine embeddings to give generalizability to
+            longer sentence sizes.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">import math 
+self.pos_enc = PositionalEncoding(d_model, pos_dropout, max_seq_length)
+src = self.pos_enc(src * math.sqrt(self.d_model))</code></pre>
+              <p>
+                In the LanguageTransformer class, I scale src in order to reduce
+                variance then apply the positional encoding
+              </p>
+            </figcaption>
+          </figure>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python"># Source: https://pytorch.org/tutorials/beginner/transformer_tutorial
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, dropout=0.1, max_len=100):
+        super(PositionalEncoding, self).__init__()
+        self.dropout = nn.Dropout(p=dropout)
+
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_ter
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0).transpose(0, 1)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        x = x + self.pe[:x.size(0), :]
+        return self.dropout(x)</code></pre>
+              <p>PositionalEncoding class</p>
+            </figcaption>
+          </figure>
+          <hr />
+          <figure>
+            <img
+              src="/images/3-transformer-1/encoder-3-2.png"
+              alt="Encoder with memory"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Rest of the encoder</p>
+            </figcaption>
+          </figure>
+          <p>
+            Masking in the encoder is required to make sure any padding doesn't
+            contribute to the self-attention mechanism. In Pytorch, this is done
+            by passing src_key_padding_mask to the transformer. For the example,
+            this looks like [False, False, False, False, False, False, False,
+            True, True, True] where the True positions should be masked. The
+            output of the encoder is called memory.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">for i, sentence in enumerate(batch):
+masks.append([False for _ in range(len(sentence))] + [True for _ in range(seq_length - len(sentence))])
+batch[i] = sentence + [0 for _ in range(seq_length - len(sentence))]</code></pre>
+              <p>Padding and masking is taken care of in the dataset class</p>
+            </figcaption>
+          </figure>
+          <hr />
+          <h2>The Decoder</h2>
+          <figure>
+            <img
+              src="/images/3-transformer-1/decoder-1.png"
+              alt="Input to the decoder"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Input to the decoder</p>
+            </figcaption>
+          </figure>
+          <p>
+            Now we can move onto the decoder architecture. The initial steps are
+            very similar to that of the encoder. We embed and pass all but the
+            very last token of each sentence into the decoders.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">self.embed_tgt = nn.Embedding(vocab_size, d_model)
+
+tgt_inp = tgt[:, :-1]
+tgt = rearrange(tgt_inp, 'n t -> t n')
+tgt = self.pos_enc(self.embed_tgt(tgt) * math.sqrt(self.d_model))</code></pre>
+              <p>
+                In the LanguageTransformer class, we embed and encode the target
+                sequence
+              </p>
+            </figcaption>
+          </figure>
+          <hr />
+          <figure>
+            <img
+              src="/images/3-transformer-1/decoder-2.png"
+              alt="Transformer decoder"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Transformer decoder</p>
+            </figcaption>
+          </figure>
+          <p>
+            We then pass these sequences through m decoders. In each decoder,
+            the sequences propagate through self attention and then attention
+            with the memory (from the encoder). So the decoder requires 3 masks:
+          </p>
+          <ol>
+            <li>
+              tgt_mask: Used in the self-attention, it ensures the decoder
+              doesn't look at future tokens from a given subsequence. This looks
+              like [[0 -inf -inf ... ], [0 0 -inf ...] ... [0 0 0 ...]]
+            </li>
+            <li>
+              tgt_key_padding_mask: Also used in the self-attention, it ensures
+              that the padding in the target sequence isn't accounted for.
+            </li>
+            <li>
+              memory_key_padding_mask: Used in the attention with the memory, it
+              ensures the padding in the memory isn't used. This is the same as
+              the src_key_padding_mask
+            </li>
+          </ol>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">def gen_nopeek_mask(length):
+    mask = rearrange(torch.triu(torch.ones(length, length)) == 1, 'h w -> w h')
+    mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
+
+    return mask
+
+memory_key_padding_mask = src_key_padding_mask.clone()
+tgt_mask = gen_nopeek_mask(tgt_inp.shape[1]).to('cuda')</code></pre>
+              <p>
+                This is in the train method. src_key_padding_mask and
+                tgt_key_padding_mask is expected from the dataloader
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            Afterwards, we pass each of the output sequences through a fully
+            connected layer that outputs a probability for each token in the
+            vocab size.
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-python">self.transformer = nn.Transformer(d_model, nhead, num_encoder_layers, num_decoder_layers, dim_feedforward, trans_dropout)
+
+output = self.transformer(src, tgt, tgt_mask=tgt_mask, src_key_padding_mask=src_key_padding_mask,
+                                  tgt_key_padding_mask=tgt_key_padding_mask, memory_key_padding_mask=memory_key_padding_mask)
+output = rearrange(output, 't n e -> n t e')
+output = self.fc(output)</code></pre>
+              <p>This is in the LanguageTransformer class</p>
+            </figcaption>
+          </figure>
+          <p>And here is the completed LanguageTransformer class!</p>
+          <pre
+            class="line-numbers"
+          ><code class="language-python">class LanguageTransformer(nn.Module):
+  def __init__(self, vocab_size, d_model, nhead, num_encoder_layers, num_decoder_layers, dim_feedforward, max_seq_length, pos_dropout, trans_dropout):
+      super().__init__()
+      self.d_model = d_model
+      self.embed_src = nn.Embedding(vocab_size, d_model)
+      self.embed_tgt = nn.Embedding(vocab_size, d_model)
+      self.pos_enc = PositionalEncoding(d_model, pos_dropout, max_seq_length)
+
+      self.transformer = nn.Transformer(d_model, nhead, num_encoder_layers, num_decoder_layers, dim_feedforward, trans_dropout)
+      self.fc = nn.Linear(d_model, vocab_size)
+
+  def forward(self, src, tgt, src_key_padding_mask, tgt_key_padding_mask, memory_key_padding_mask, tgt_mask):
+      src = rearrange(src, 'n s -> s n')
+      tgt = rearrange(tgt, 'n t -> t n')
+      src = self.pos_enc(self.embed_src(src) * math.sqrt(self.d_model))
+      tgt = self.pos_enc(self.embed_tgt(tgt) * math.sqrt(self.d_model))
+
+      output = self.transformer(src, tgt, tgt_mask=tgt_mask, src_key_padding_mask=src_key_padding_mask,
+                                tgt_key_padding_mask=tgt_key_padding_mask, memory_key_padding_mask=memory_key_padding_mask)
+      output = rearrange(output, 't n e -> n t e')
+      return self.fc(output)</code></pre>
+          <hr />
+          <h2>Results</h2>
+          <p>
+            I used the tatoeba dataset, a small dataset with around 160000
+            english to french language pairs available
+            <a href="http://www.manythings.org/anki/">here</a>.
+          </p>
+          <figure>
+            <img
+              src="/images/3-transformer-1/data.png"
+              alt="A relatively small dataset with short sentences"
+              style="width: 60%"
+            />
+            <figcaption>
+              <p>A relatively small dataset with short sentences</p>
+            </figcaption>
+          </figure>
+          <p>Here are the results of training for 20 epochs:</p>
+          <figure>
+            <img
+              src="/images/3-transformer-1/Losses-and-Time.png"
+              alt="Losses vs Time"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>Losses vs Time</p>
+            </figcaption>
+          </figure>
+          <p>
+            My model achieves a validation loss of 0.99. However, it starts
+            overfitting around epoch 15 based from the validation loss being
+            higher than the train loss. And finally, some results of translating
+            sentences:
+          </p>
+          <p>
+            I am giving you a gift.: Je vous donne un cadeau. How did you find
+            that?: Comment l'as-tu trouvée? I'm going to run to your house.: Je
+            vais courir à votre maison.
+          </p>
+          <hr />
+          <h2>Further Research</h2>
+          <p>Some improvements that could be made:</p>
+          <ol>
+            <li>Using beam search to translate sentences</li>
+            <li>Running the model on larger datasets</li>
+            <li>
+              Using torchtext instead of hacking my own dataset class to get
+              more consistent batches
+            </li>
+            <li>Using smoothened loss</li>
+          </ol>
+          <p>
+            My code is located
+            <a href="https://github.com/andrewpeng02/transformer-translation"
+              >here</a
+            >.
+          </p>
         </div>
       </main>
 

@@ -1,7 +1,7 @@
 [
   {
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-1.html",
+    "href": "/writings/3-transformer-.html",
     "card-desc": "this is a card description",
 		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
@@ -9,7 +9,7 @@
   },
   {
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-1.html",
+    "href": "/writings/3-transformer-.html",
     "card-desc": "this is a card description",
 		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
@@ -17,7 +17,7 @@
   },
   {
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-1.html",
+    "href": "/writings/3-transformer-.html",
     "card-desc": "this is a card description",
 		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
@@ -25,17 +25,17 @@
   },
   {
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-1.html",
+    "href": "/writings/3-transformer-.html",
     "card-desc": "this is a card description",
 		"date": "18 Aug 2020",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
     "card-img-alt": "blah"
   },
   {
-    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-1.html",
-    "card-desc": "this is a card description",
-		"date": "18 Aug 2020",
+    "title": "Transformer [2/2]- PytorchTransformers Library",
+    "href": "/writings/4-transformer-2.html",
+    "card-desc": "In part 2 of my series, I'm going to go over huggingface's Pytorch Transformers library.",
+		"date": "25 Nov 2019",
     "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
     "card-img-alt": "blah"
   },
@@ -43,9 +43,9 @@
     "title": "Transformer [1/2]- Pytorch's nn.Transformer",
     "href": "/writings/3-transformer-1.html",
     "card-desc": "In part 1 of my series on transformers, I'm going to go over implementing a neural machine translation model using Pytorch's new nn.Transformer module",
-		"date": "18 Aug 2020",
-    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
-    "card-img-alt": "blah"
+		"date": "10 Nov 2019",
+    "card-img-src": "images/3-transformer-1/encoder-3.png",
+    "card-img-alt": "A diagram of the Transformer encoder"
   },
   {
     "title": "College Tuition Prediction [2/2]- Model",
