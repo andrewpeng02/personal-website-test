@@ -8,20 +8,20 @@
     "card-img-alt": "blah"
   },
   {
-    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-.html",
-    "card-desc": "this is a card description",
-		"date": "18 Aug 2020",
-    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
-    "card-img-alt": "blah"
+    "title": "Visualizing Vector Fields and Flow Lines using Matplotlib",
+    "href": "/writings/7-visualizing-vector-fields.html",
+    "card-desc": "Using matplotlib, a python plotting library, this is how you graph both 2d and 3d vector fields along with their associated flow lines",
+		"date": "31 Mar 2020",
+    "card-img-src": "images/7-visualizing-vector-fields/3-3.png",
+    "card-img-alt": "A graph of a vector field and flow line in 3d"
   },
   {
-    "title": "Transformer [1/2]- Pytorch's nn.Transformer",
-    "href": "/writings/3-transformer-.html",
-    "card-desc": "this is a card description",
-		"date": "18 Aug 2020",
-    "card-img-src": "images/ICLH_Diagram_Batch_01_03-DeepNeuralNetwork-WHITEBG.png",
-    "card-img-alt": "blah"
+    "title": "Deep Reinforcement Learning- Deep Q Learning",
+    "href": "/writings/6-deep-reinforcement-learning-dqn.html",
+    "card-desc": "In this post, I cover an introduction into deep reinforcement learning, a branch of machine learning dealing with agents and how they make decisions in an environment, specifically Deep Q Learning in Pytorch",
+		"date": "01 Mar 2020",
+    "card-img-src": "images/6-deep-reinforcement-learning-dqn/card-img.png",
+    "card-img-alt": "Image of the lunar rover OpenAI Gym"
   },
   {
     "title": "GPU Monitor IntelliJ Plugin",
