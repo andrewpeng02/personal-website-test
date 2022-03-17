@@ -1,50 +1,50 @@
 main {
-	margin-bottom: 5rem;
+  margin-bottom: 5rem;
 }
 
 .card {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .card-text {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 img {
-	margin-right: 3rem;
+  margin-right: 3rem;
 
-	height: 15rem;
-	width: 20rem;
-	min-width: 20rem;
+  height: 15rem;
+  width: 20rem;
+  min-width: 20rem;
 
-	object-fit: cover;
+  object-fit: cover;
 }
 
 h1 {
-	font-size: 2rem;
+  font-size: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 p {
-	color: rgb(60, 60, 60);
-	font-size: 1.7rem;
-	line-height: 2.5rem;
+  color: rgb(60, 60, 60);
+  font-size: 1.7rem;
+  line-height: 2.5rem;
 
-	margin-top: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 p.date {
-	color: rgb(100, 100, 100);
-	font-size: 1.2rem;
+  color: rgb(100, 100, 100);
+  font-size: 1.2rem;
 }
 
 a {
-	text-decoration: none;
+  text-decoration: none;
 }
