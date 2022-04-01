@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog title</title>
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="writings-style.css" />
+    <link rel="stylesheet" href="../prism/prism.css" />
+
+    <script src="../components/header.js" type="text/javascript" defer></script>
+    <script
+      src="../components/nav-footer.js"
+      type="text/javascript"
+      defer
+    ></script>
+    <script src="../components/footer.js" type="text/javascript" defer></script>
+    <script src="writings.js" type="text/javascript" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header-component></header-component>
+
+      <main>
+        <h1 class="title"></h1>
+        <p class="date"></p>
+        <div class="blog-content">
+          <p>
+            It's been nearly three years since I've started blogging—it's about
+            time for a redesign!
+          </p>
+          <figure>
+            <img
+              src="/images/9-website-redesign/card-img.jpg"
+              alt="A graph of the results"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>
+                <a href="https://unsplash.com/photos/tZc3vjPCk-Q">Source</a>
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            I originally made this blog using the Ghost blogging platform. To
+            host it on Github Pages, I generated a static site using a script
+            that scrapes the html files from the live version of the website.
+          </p>
+          <p>
+            Now that I've started learning web development, I decided to code
+            the entire website from scratch. I used HTML, CSS and Javascript,
+            and I'm hosting this webpage on Github Pages. Besides my
+            <a href="https://github.com/andrewpeng02/calculator-webapp"
+              >calculator website</a
+            >, this is my first large-scale website I've created, and I feel
+            like I've learned a lot!
+          </p>
+          <hr />
+          <h2>Methodology</h2>
+          <h3>Structure</h3>
+          <p>This is how I structured the most important files in my code:</p>
+          <ul>
+            <li>assets/: Contains the svgs for the backward/forward buttons</li>
+            <li>
+              components/: Contains the header, footer, and nav footer (for the
+              blog posts) templates that get reused. More information in the
+              section below
+            </li>
+            <li>
+              data/: Contains the data for each blog post in a json file that's
+              accessed using Javascript
+            </li>
+            <li>
+              fonts/: Contains the fonts for the website. I'm using the open
+              source Charter font
+            </li>
+            <li>
+              images/: Contains the images for each blog post in their own
+              subdirectory
+            </li>
+            <li>
+              index-page/: Contains the css and javascript files for the index
+              (home) page
+            </li>
+            <li>writings/: Contains the html files for all the blog posts</li>
+            <li><i class="filename">about.html</i>: My about page</li>
+            <li>
+              <i class="filename">index.html</i>: The homepage that dynamically
+              loads the blog posts as cards using Javascript
+            </li>
+            <li><i class="filename">projects.html</i>: Projects page</li>
+            <li>
+              <i class="filename">style.css</i>: Global css file that's used in
+              all html files
+            </li>
+          </ul>
+
+          <h3>Templates in HTML</h3>
+          <p>
+            To reduce the amount of duplicate code and to make it easier to
+            modify it, I used the Shadow DOM API and created custom HTML
+            components for the most reused parts of my website: the header, the
+            footer, and the navigation footer for my blog posts.
+          </p>
+          <figure>
+            <img
+              src="/images/9-website-redesign/shadowdom.svg"
+              alt="An image of the Shadow Tree"
+              style="width: 100%"
+            />
+            <figcaption>
+              <p>
+                A diagram of the DOM tree and shadow tree. Source:
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM"
+                  >MDN Web Docs</a
+                >
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            The Shadow DOM helps encapsulate parts of my HTML code. You can
+            attach hidden elements to normal element in the DOM tree and modify
+            it with Javascript by accessing element.shadowRoot. However, it'll
+            be separated from the rest of your HTML code, meaning that CSS
+            styles don't apply to the shadow elements. This is useful, because
+            we want the header/footer to look the same regardless of which page
+            it's on.
+          </p>
+          <p>
+            We can take a look at the footer component. This is how I add the
+            footer to an html file:
+          </p>
+          <pre class="line-numbers"><code class="language-html">&lt;body&gt;
+  ...
+  &lt;footer-component&gt;&lt;/footer-component&gt;
+&lt;/body&gt;</code></pre>
+          <p>
+            It's super simple! To actually create this custom HTML element, I
+            create a <i class="filename">footer.js</i> file and link it in the
+            html file. The first half of the file consists of creating a
+            template element of the footer:
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-javascript">const footerTemplate = document.createElement(&quot;template&quot;);
+footerTemplate.innerHTML = `
+&lt;style&gt;
+footer {
+  margin-top: 6rem;
+  margin-bottom: 1.5rem;
+  
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-text {
+  font-size: 1.25rem;
+  color: rgb(125, 125, 125);
+}
+&lt;/style&gt;
+&lt;footer&gt;
+&lt;div class=&quot;footer-text&quot;&gt;
+  Copyright &amp;copy; 2022 Andrew Peng &amp;bull; All rights reserverd
+&lt;/div&gt;
+&lt;/footer&gt;
+`;</code></pre>
+              <p>
+                <i class="filename">components/footer.js</i> creates the footer
+                template element
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            I then add some code to define the HTMLElement and add it to the
+            shadow dom using the connectedCallback() callback
+          </p>
+          <figure>
+            <figcaption>
+              <pre
+                class="line-numbers"
+              ><code class="language-javascript">class FooterComponent extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  connectedCallback() {
+    const shadowRoot = this.attachShadow({ mode: "closed" }); // mode="closed" means it can't be modified by javascript
+    shadowRoot.appendChild(footerTemplate.content);
+  }
+}
+
+customElements.define("footer-component", FooterComponent);</code></pre>
+              <p>
+                <i class="filename">components/footer.js</i> create and add the
+                element to the shadow root
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            And now I can use the element anywhere in my HTML as long as I load
+            the script!
+          </p>
+
+          <h3>Design</h3>
+          <p>
+            I have a global <i class="filename">style.css</i> file to define my
+            font, elements such as p or h1, and define the structure of the page
+            (like putting the content in the middle of the screen).
+          </p>
+          <p>
+            Then, each type of page has its own css file that's loaded after the
+            global <i class="filename">style.css</i> to take advantage of the
+            cascading nature of css files.
+          </p>
+
+          <h3>Javascript Logic</h3>
+          <p>
+            The most important javascript files are the
+            <i class="filename">index-page/main.js</i> (to create the cards on
+            the homepage) and <i class="filename">writings/writings.js</i> (to
+            load the title, date, and prev/next blog posts for navigation).
+          </p>
+          <p>
+            Right now, the data is pulled from
+            <i class="filename">data/blog-posts-metadata.json</i>, which is
+            organized as an array of blog metadata. Here's what the file looks
+            like:
+          </p>
+          <figure>
+            <figcaption>
+              <pre class="line-numbers"><code class="language-javascript">[
+  {
+    "title": "Website Redesign 1",
+    "href": "/writings/9-website-redesign.html",
+    "card-desc": "I completely recoded the website using pure HTML/CSS/JS, moving away from a static site generator. I go over my methodology and struture of the code in this post",
+    "date": "28 Mar 2022",
+    "card-img-src": "images/9-website-redesign/card-img.jpg",
+    "card-img-alt": "An image of website mocks. https://unsplash.com/photos/tZc3vjPCk-Q"
+  }, ... ]</code></pre>
+              <p>
+                A sampling of
+                <i class="filename">data/blog-posts-metadata.json</i>
+              </p>
+            </figcaption>
+          </figure>
+          <p>
+            The javascript files just open this json file, parse it, create new
+            elements, and add it to the dom (or shadow dom for
+            <i class="filename">writings/writings.js</i>)
+          </p>
+          <hr />
+          <h2>Conclusion</h2>
+          <p>
+            After taking on this project, I feel like I learned so much more
+            about HTML/CSS/Javascript, particularly coding larger multi-page
+            websites! I want to add more features to the blog in the future,
+            such as more animations or a dark mode. But, I feel good enough to
+            release this site to the world.
+          </p>
+        </div>
+      </main>
+
+      <nav-footer-component></nav-footer-component>
+      <footer-component></footer-component>
+    </div>
+
+    <script src="../prism/prism.js"></script>
+  </body>
+</html>

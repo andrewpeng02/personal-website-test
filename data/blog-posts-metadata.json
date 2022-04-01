@@ -1,5 +1,13 @@
 [
   {
+    "title": "Website Redesign 1",
+    "href": "/writings/9-website-redesign.html",
+    "card-desc": "I completely recoded the website using pure HTML/CSS/JS, moving away from a static site generator. I go over my methodology and struture of the code in this post",
+    "date": "28 Mar 2022",
+    "card-img-src": "images/9-website-redesign/card-img.jpg",
+    "card-img-alt": "An image of website mocks. https://unsplash.com/photos/tZc3vjPCk-Q"
+  },
+  {
     "title": "Time Series Forecasting in Pytorch",
     "href": "/writings/8-time-series-forecasting.html",
     "card-desc": "Time series forecasting is a classical problem in which you predict the values in the next timesteps, given historical data. In this blog, I tackle the M5 Forecasting compeition on Kaggle",
