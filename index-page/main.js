@@ -20,8 +20,12 @@ function createCard(blogPostMetadata) {
   const img = document.createElement("img");
   img.setAttribute("src", blogPostMetadata["card-img-src"]);
   img.setAttribute("alt", blogPostMetadata["card-img-alt"]);
+  const imgDiv = document.createElement("div");
+  imgDiv.setAttribute("class", "imgDiv");
+  imgDiv.appendChild(img);
 
   const cardTextDiv = document.createElement("div");
+  cardTextDiv.setAttribute("class", "cardTextDiv");
 
   const h1 = document.createElement("h1");
   h1.innerText = blogPostMetadata["title"];
@@ -37,7 +41,7 @@ function createCard(blogPostMetadata) {
   cardTextDiv.appendChild(pDesc);
   cardTextDiv.appendChild(pDate);
 
-  a.appendChild(img);
+  a.appendChild(imgDiv);
   a.appendChild(cardTextDiv);
   mainElement.appendChild(a);
 }

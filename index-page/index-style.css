@@ -10,17 +10,32 @@ main {
   align-items: center;
 }
 
+@media (max-width: 500px) {
+  .card {
+    flex-direction: column;
+  }
+}
+
 .card-text {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
+}
+
+.cardTextDiv { 
+  flex: 3 1 0;
+}
+
+.imgDiv {
+  flex: 2 1 0;
+  width: 75%;
+
+  margin-right: 3rem;
 }
 
 img {
-  margin-right: 3rem;
+  width: 100%;
 
-  height: 15rem;
-  width: 20rem;
-  min-width: 20rem;
+  height: 100%;
 
   object-fit: cover;
 }
