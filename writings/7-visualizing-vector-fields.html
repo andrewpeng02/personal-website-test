@@ -27,6 +27,21 @@
     ></script>
     <script src="../components/footer.js" type="text/javascript" defer></script>
     <script src="writings.js" type="text/javascript" defer></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-VR4JLBGD0D"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-VR4JLBGD0D");
+    </script>
   </head>
   <body>
     <div class="container">
@@ -435,7 +450,8 @@ def make_vf_3d(x_lim, y_lim, z_lim, step, vf_x, vf_y, vf_z, length, func_xs=None
             />
             <figcaption>
               <p>
-                Graphing the vector field \(F(x, y, z) = (x, 0, 3)\) with two different flow lines starting at (1, 1, 2) and (-3, 0, 2)
+                Graphing the vector field \(F(x, y, z) = (x, 0, 3)\) with two
+                different flow lines starting at (1, 1, 2) and (-3, 0, 2)
               </p>
             </figcaption>
           </figure>
